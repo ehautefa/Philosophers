@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:45:53 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/26 16:12:33 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/26 17:44:46 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	ft_init_env(int	ac, char **av, t_env *env)
 	env->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
 		env->num_of_eat = ft_atoi(av[5]);
+	else
+		env->num_of_eat = -1;
+	env->alive = 0;
 	return (0);
 }
 

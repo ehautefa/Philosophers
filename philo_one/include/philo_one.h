@@ -11,6 +11,7 @@ typedef struct s_philo
 {
 	int			id;
 	int			action;
+	int			time_elapsed;
 	pthread_t	thread;
 }				t_philo;
 
@@ -22,6 +23,8 @@ typedef struct s_env
 	int				time_to_sleep;
 	int				num_of_eat;
 	int				nb_forks;
+	int				n;
+	int				alive;
 	pthread_mutex_t	*forks;
 	t_philo			*ph;
 }				t_env;
