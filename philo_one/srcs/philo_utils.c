@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/25 12:40:12 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/26 16:11:48 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,27 @@ int	ft_atoi(const char *str)
 		return (-1);
 	else
 		return (res * signe);
+}
+
+void	ft_free(t_env *env)
+{
+	if (env->forks)
+		free(env->forks);
+	env->forks = NULL;
+	if (env->ph)
+		free(env->ph);
+	env->ph = NULL;
+}
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		usleep(100000);
+		i++;
+	}
 }
