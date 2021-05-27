@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/26 16:11:48 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/27 18:45:09 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ int	ft_atoi(const char *str)
 
 void	ft_free(t_env *env)
 {
+	int		i;
+	
+	i = 0;
+	while (i < env->nb_forks)
+	{
+		pthread_mutex_destroy(&env->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&env->m_alive);
 	if (env->forks)
 		free(env->forks);
 	env->forks = NULL;
@@ -49,15 +58,24 @@ void	ft_free(t_env *env)
 	env->ph = NULL;
 }
 
-void	ft_putstr(char *str)
+long	get_time_in_ms(struct timeval time)
 {
-	int	i;
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
 
-	i = 0;
-	while (str[i])
+void	ft_usleep(long time)
+{
+	struct timeval	start;
+	long			start_in_ms;
+	long			final_time;
+
+	gettimeofday(&start, NULL);
+	start_in_ms = get_time_in_ms(start);
+	final_time = start_in_ms + time;
+	while (start_in_ms < final_time)
 	{
-		write(1, &str[i], 1);
-		usleep(100000);
-		i++;
-	}
+		gettimeofday(&start, NULL);
+		start_in_ms = get_time_in_ms(start);
+		usleep(100);
+	} 
 }

@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:45:53 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/26 17:44:46 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/27 18:14:42 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,23 @@ int	main(int ac, char **av)
 {
 	t_env		env;
 
+	gettimeofday(&env.start, NULL);
 	if (ac != 5 && ac != 6)
 	{
 		printf("Error,\nWrong number of envuments.");
 		return (1);
 	}
 	if (ft_init_env(ac, av, &env) || ft_check_env(&env)
-		|| ft_init_forks(&env) || ft_init_thread(&env))
+		|| ft_init_forks(&env) || ft_init_mutex_meal_time(&env))
+	{
+		printf("Error,\narguments corrupted");
+		return (1);
+	}
+	if (ft_init_thread(&env))
 	{
 		printf("Error,\narguments corrupted");
 		return (1);
 	}
 	ft_free(&env);
-	pthread_exit(NULL);
 	return (0);
 }
