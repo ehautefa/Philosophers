@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 11:13:07 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:09:26 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,36 @@ long	get_time_in_ms(struct timeval time)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	ft_usleep(long time)
+int	ft_usleep(long time)
 {
 	struct timeval	start;
 	long			start_in_ms;
 	long			final_time;
 
-	gettimeofday(&start, NULL);
+	if (gettimeofday(&start, NULL))
+		return (1);
 	start_in_ms = get_time_in_ms(start);
 	final_time = start_in_ms + time;
 	while (start_in_ms < final_time)
 	{
-		gettimeofday(&start, NULL);
+		if (gettimeofday(&start, NULL))
+			return (1);
 		start_in_ms = get_time_in_ms(start);
 		usleep(100);
 	}
+	return (0);
 }
 
 int	ft_join_thread(t_env *env)
 {
-	int	i;
+	int		i;
+	void	*retur;
 
 	i = -1;
-	while (++i <= env->nb_of_ph)
-		pthread_join(env->ph[i].thread, NULL);
+	retur = NULL;
+	while (++i <= env->nb_of_ph && retur == NULL)
+		pthread_join(env->ph[i].thread, retur);
+	if (retur != NULL)
+		return (1);
 	return (0);
 }

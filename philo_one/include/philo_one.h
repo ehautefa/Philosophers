@@ -44,7 +44,7 @@ int		ft_init_env(int	ac, char **av, t_env *env);
 /*
 ** INIT_THREAD.C
 */
-void	ft_init_meal_time(t_env *env);
+int		ft_init_meal_time(t_env *env);
 int		ft_init_thread(t_env *env);
 int		check_alive(t_env *env);
 /*
@@ -53,21 +53,21 @@ int		check_alive(t_env *env);
 int		ft_atoi(const char *str);
 void	ft_free(t_env *env);
 long	get_time_in_ms(struct timeval time);
-void	ft_usleep(long time);
+int		ft_usleep(long time);
 int		ft_join_thread(t_env *env);
 /*
 ** INIT_MUTEX.C
 */
-void	take_a_fork(t_env *env, int n, int fork);
+int		take_a_fork(t_env *env, int n, int fork);
 int		ft_init_forks(t_env *env);
 int		ft_init_mutex_meal_time(t_env *env);
 /*
 ** LAUNCH_THREAD.C
 */
-void	eating(t_philo *ph);
-void	sleeping(t_philo *ph);
-void	thinking(t_philo *ph);
-void	stop_simulation(t_env *env);
+int		eating(t_philo *ph);
+int		sleeping(t_philo *ph);
+int		thinking(t_philo *ph);
+int		stop_simulation(t_env *env);
 void	*launch_thread(void *arg);
 
 /*
