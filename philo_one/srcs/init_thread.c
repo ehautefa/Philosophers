@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 11:21:56 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:53:50 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ int	ft_init_thread(t_env *env)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	env->ph = (t_philo *)malloc((env->nb_of_ph + 1) * sizeof(t_philo));
 	if (env->ph == NULL)
 		return (1);
 	ft_init_meal_time(env);
-	pthread_create(&env->ph[i].thread, NULL, launch_waiter, (void *)env);
-	while (i < env->nb_of_ph)
+	pthread_create(&env->ph[env->nb_of_ph].thread, NULL,
+		launch_waiter, (void *)env);
+	while (++i < env->nb_of_ph)
 	{
 		env->ph[i].id = i;
 		env->ph[i].num_of_eat = env->num_of_eat;
@@ -59,7 +60,6 @@ int	ft_init_thread(t_env *env)
 		pthread_create(&env->ph[i].thread, NULL, launch_thread,
 			(void *)&env->ph[i]);
 		usleep(10);
-		i++;
 	}
 	if (ft_join_thread(env))
 		return (1);

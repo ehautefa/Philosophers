@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 11:35:58 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:52:03 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ void	thinking(t_philo *ph)
 			+ get_time_in_ms(time)), ph->id + 1);
 }
 
+void	stop_simulation(t_env *env)
+{
+	pthread_mutex_lock(&env->m_alive);
+	env->alive = 1;
+	pthread_mutex_unlock(&env->m_alive);
+}
+
 void	*launch_thread(void *arg)
 {
 	t_philo			*ph;
@@ -64,6 +71,8 @@ void	*launch_thread(void *arg)
 		if (check_alive(ph->env) == 0)
 			thinking(ph);
 		ph->num_of_eat--;
+		if (ph->num_of_eat == 0)
+			stop_simulation(ph->env);
 	}
 	return (NULL);
 }

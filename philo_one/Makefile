@@ -28,6 +28,7 @@ clean:
 
 fclean:	
 			rm -f ${NAME}
+			rm -rf philo_one.dSYM
 
 re:			fclean all
 
