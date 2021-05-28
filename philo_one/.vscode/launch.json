@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/philo_one",
-			"args": ["2", "10", "8", "9", "4"],
+			"args": ["2", "5", "8", "9", "4"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
