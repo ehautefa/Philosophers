@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 17:04:33 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:18:54 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_init_thread(t_env *env)
 	if (env->ph == NULL || ft_init_meal_time(env))
 		return (1);
 	if (pthread_create(&env->ph[env->nb_of_ph].thread, NULL,
-		launch_waiter, (void *)env) != 0)
+			launch_waiter, (void *)env) != 0)
 		return (1);
 	while (++i < env->nb_of_ph)
 	{
@@ -59,7 +59,7 @@ int	ft_init_thread(t_env *env)
 		env->ph[i].num_of_eat = env->num_of_eat;
 		env->ph[i].env = env;
 		if (pthread_create(&env->ph[i].thread, NULL, launch_thread,
-			(void *)&env->ph[i]) != 0)
+				(void *)&env->ph[i]) != 0)
 			return (1);
 		usleep(100);
 	}

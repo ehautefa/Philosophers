@@ -6,13 +6,13 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 16:29:43 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:21:49 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_one.h"
 
-int		take_a_fork(t_env *env, int n, int fork)
+int	take_a_fork(t_env *env, int n, int fork)
 {
 	struct timeval	time;
 
@@ -25,9 +25,9 @@ int		take_a_fork(t_env *env, int n, int fork)
 	if (gettimeofday(&time, NULL) != 0)
 		return (1);
 	if (check_alive(env) == 0)
-		printf("%-3d MS %d has taken the %d fork\n",
+		printf("%-3d MS %d has taken a fork\n",
 			(int)(-get_time_in_ms(env->start)
-				+ get_time_in_ms(time)), n, fork);
+				+ get_time_in_ms(time)), n);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 16:41:20 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:25:51 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,7 @@ int	thinking(t_philo *ph)
 	return (0);
 }
 
-int	stop_simulation(t_env *env)
-{
-	if (pthread_mutex_lock(&env->m_alive) != 0)
-		return (1);
-	env->alive = 1;
-	if (pthread_mutex_unlock(&env->m_alive) != 0)
-		return (1);
-	return (0);
-}
-
-int		ft_manage_forks(t_philo *ph)
+int	ft_manage_forks(t_philo *ph)
 {
 	if (ph->id % 2 == 0)
 	{
@@ -87,23 +77,21 @@ void	*launch_thread(void *arg)
 	while (ph->num_of_eat != 0 && check_alive(ph->env) == 0)
 	{
 		if (ft_manage_forks(ph)
-				|| pthread_mutex_lock(&ph->env->m_meal_time[ph->id])
-				|| gettimeofday(&ph->meal_time, NULL)
-				|| pthread_mutex_unlock(&ph->env->m_meal_time[ph->id]))
+			|| pthread_mutex_lock(&ph->env->m_meal_time[ph->id])
+			|| gettimeofday(&ph->meal_time, NULL)
+			|| pthread_mutex_unlock(&ph->env->m_meal_time[ph->id]))
 			return ("Error");
-		if (check_alive(ph->env) == 0)
-			if (eating(ph))
-				return ("Error");
+		if (check_alive(ph->env) == 0 && eating(ph))
+			return ("Error");
 		if (gettimeofday(&time, NULL)
-				|| pthread_mutex_unlock(&ph->env->forks[ph->id])
-				|| pthread_mutex_unlock(&ph->env->forks[(ph->id + 1) % ph->env->nb_forks]))
+			|| pthread_mutex_unlock(&ph->env->forks[ph->id])
+			|| pthread_mutex_unlock(&ph->env->forks[(ph->id + 1)
+					% ph->env->nb_forks]))
 			return ("Error");
-		if (check_alive(ph->env) == 0)
-			if (sleeping(ph))
-				return ("Error");
-		if (check_alive(ph->env) == 0)
-			if (thinking(ph))
-				return ("Error");
+		if (check_alive(ph->env) == 0 && sleeping(ph))
+			return ("Error");
+		if (check_alive(ph->env) == 0 && thinking(ph))
+			return ("Error");
 		ph->num_of_eat--;
 	}
 	return (NULL);

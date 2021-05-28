@@ -67,7 +67,7 @@ int		ft_init_mutex_meal_time(t_env *env);
 int		eating(t_philo *ph);
 int		sleeping(t_philo *ph);
 int		thinking(t_philo *ph);
-int		stop_simulation(t_env *env);
+int		ft_manage_forks(t_philo *ph);
 void	*launch_thread(void *arg);
 
 /*
