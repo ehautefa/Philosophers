@@ -31,14 +31,15 @@ struct s_env
 	int				alive;
 	int				who_is_dead;
 	pthread_mutex_t	*m_meal_time;
-	pthread_mutex_t	m_alive;
-	pthread_mutex_t	*forks;
+	sem_t			*s_alive;
+	sem_t			*forks;
 	t_philo			*ph;
 };
 
 /*
 ** PHILO_TWO.C
 */
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_check_env(t_env *env);
 int		ft_init_env(int	ac, char **av, t_env *env);
 
@@ -57,9 +58,9 @@ long	get_time_in_ms(struct timeval time);
 void	ft_usleep(long time);
 int		ft_join_thread(t_env *env);
 /*
-** INIT_MUTEX.C
+** INIT_SEM.C
 */
-void	take_a_fork(t_env *env, int n, int fork);
+void	take_a_fork(t_env *env, int n);
 int		ft_init_forks(t_env *env);
 int		ft_init_mutex_meal_time(t_env *env);
 /*

@@ -6,11 +6,21 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:45:53 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 12:04:49 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:46:49 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_two.h"
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] && s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
 
 int	ft_check_env(t_env *env)
 {

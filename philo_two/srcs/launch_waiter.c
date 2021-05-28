@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 12:04:35 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:44:15 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	check_time_last_meal(t_env *env, int i)
 		>= env->time_to_die)
 	{
 		pthread_mutex_unlock(&env->m_meal_time[i]);
-		pthread_mutex_lock(&env->m_alive);
+		sem_wait(env->s_alive);
 		env->alive = 1;
-		pthread_mutex_unlock(&env->m_alive);
+		sem_post(env->s_alive);
 		usleep(1000);
 		env->who_is_dead = i + 1;
 		gettimeofday(&time, NULL);
@@ -42,10 +42,10 @@ void	*launch_waiter(void *arg)
 	int				i;
 
 	env = (t_env *)arg;
-	pthread_mutex_lock(&env->m_alive);
+	sem_wait(env->s_alive);
 	while (env->alive == 0)
 	{
-		pthread_mutex_unlock(&env->m_alive);
+		sem_post(env->s_alive);
 		i = 0;
 		while (i < env->nb_of_ph)
 		{
@@ -55,6 +55,6 @@ void	*launch_waiter(void *arg)
 			i++;
 		}
 	}
-	pthread_mutex_unlock(&env->m_alive);
+	sem_post(env->s_alive);
 	return (NULL);
 }

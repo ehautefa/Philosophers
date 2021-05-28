@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 12:04:21 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:50:45 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	check_alive(t_env *env)
 {
 	int	flag;
 
-	pthread_mutex_lock(&env->m_alive);
+	sem_wait(env->s_alive);
 	flag = env->alive;
-	pthread_mutex_unlock(&env->m_alive);
+	sem_post(env->s_alive);
 	return (flag);
 }
 

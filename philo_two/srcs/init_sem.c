@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mutex.c                                       :+:      :+:    :+:   */
+/*   init_sem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 12:04:22 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:49:53 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_two.h"
 
-void	take_a_fork(t_env *env, int n, int fork)
+void	take_a_fork(t_env *env, int n)
 {
 	struct timeval	time;
 
-	if (fork >= env->nb_forks)
-		fork = 0;
-	pthread_mutex_lock(&env->forks[fork]);
+	sem_wait(env->forks);
 	gettimeofday(&time, NULL);
 	if (check_alive(env) == 0)
-		printf("%-3d MS %d has taken the %d fork\n",
+		printf("%-3d MS %d has taken a fork\n",
 			(int)(-get_time_in_ms(env->start)
-				+ get_time_in_ms(time)), n, fork);
+				+ get_time_in_ms(time)), n);
 }
 
 int	ft_init_mutex_meal_time(t_env *env)
@@ -53,17 +51,11 @@ int	ft_init_forks(t_env *env)
 	env->nb_forks = env->nb_of_ph;
 	if (env->nb_forks == 1)
 		env->nb_forks = 2;
-	env->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-			* env->nb_forks);
-	if (env->forks == NULL)
-		return (1);
-	while (i < env->nb_forks)
-	{
-		if (pthread_mutex_init(&env->forks[i], NULL) != 0)
-			return (1);
-		i++;
-	}
-	if (pthread_mutex_init(&env->m_alive, NULL) != 0)
-		return (1);
+	env->forks = sem_open("s_fork", O_CREAT, S_IRWXU, env->nb_forks);
+	// if (ft_strcmp(env->forks, "SEM_FAILED") == 0)
+		// return (1);
+	env->s_alive = sem_open("s_alive", O_CREAT, S_IRWXU, 1);
+	// if (ft_strcmp(env->s_alive, "SEM_FAILED") == 0)
+	// 	return (1);
 	return (0);
 }

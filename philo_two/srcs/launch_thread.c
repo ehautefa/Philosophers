@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 12:04:31 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:45:50 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	thinking(t_philo *ph)
 
 void	stop_simulation(t_env *env)
 {
-	pthread_mutex_lock(&env->m_alive);
+	sem_wait(env->s_alive);
 	env->alive = 1;
-	pthread_mutex_unlock(&env->m_alive);
+	sem_post(env->s_alive);
 }
 
 void	*launch_thread(void *arg)
@@ -56,16 +56,16 @@ void	*launch_thread(void *arg)
 	ph = (t_philo *)arg;
 	while (ph->num_of_eat != 0 && check_alive(ph->env) == 0)
 	{
-		take_a_fork(ph->env, ph->id + 1, ph->id);
-		take_a_fork(ph->env, ph->id + 1, ph->id + 1);
+		take_a_fork(ph->env, ph->id + 1);
+		take_a_fork(ph->env, ph->id + 1);
 		pthread_mutex_lock(&ph->env->m_meal_time[ph->id]);
 		gettimeofday(&ph->meal_time, NULL);
 		pthread_mutex_unlock(&ph->env->m_meal_time[ph->id]);
 		if (check_alive(ph->env) == 0)
 			eating(ph);
 		gettimeofday(&time, NULL);
-		pthread_mutex_unlock(&ph->env->forks[ph->id]);
-		pthread_mutex_unlock(&ph->env->forks[(ph->id + 1) % ph->env->nb_forks]);
+		sem_post(ph->env->forks);
+		sem_post(ph->env->forks);
 		if (check_alive(ph->env) == 0)
 			sleeping(ph);
 		if (check_alive(ph->env) == 0)
