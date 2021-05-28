@@ -1,7 +1,9 @@
-SRCS =  srcs/philo_one.c	\
-		srcs/philo_utils.c	\
-		srcs/init_thread.c	\
-		srcs/init_mutex.c
+SRCS =  srcs/philo_one.c		\
+		srcs/philo_utils.c		\
+		srcs/init_thread.c		\
+		srcs/init_mutex.c		\
+		srcs/launch_thread.c	\
+		srcs/launch_waiter.c
 
 INCLUDE =	-Iinclude
 

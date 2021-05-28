@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/27 18:13:25 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:19:16 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	take_a_fork(t_env *env, int n, int fork)
 {
 	struct timeval	time;
 
-
 	if (fork >= env->nb_forks)
 		fork = 0;
 	pthread_mutex_lock(&env->forks[fork]);
 	gettimeofday(&time, NULL);
 	if (check_alive(env) == 0)
-		printf("%-3d MS %d has taken the %d fork\n", (int)(-get_time_in_ms(env->start)
+		printf("%-3d MS %d has taken the %d fork\n",
+			(int)(-get_time_in_ms(env->start)
 				+ get_time_in_ms(time)), n, fork);
 }
 
@@ -32,10 +32,10 @@ int	ft_init_mutex_meal_time(t_env *env)
 
 	i = 0;
 	env->m_meal_time = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-		* env->nb_of_ph);
+			* env->nb_of_ph);
 	if (env->m_meal_time == NULL)
 		return (1);
-		i = 0;
+	i = 0;
 	while (i < env->nb_of_ph)
 	{
 		if (pthread_mutex_init(&env->m_meal_time[i], NULL) != 0)

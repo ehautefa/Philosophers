@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/27 18:45:09 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:13:07 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_atoi(const char *str)
 void	ft_free(t_env *env)
 {
 	int		i;
-	
+
 	i = 0;
 	while (i < env->nb_forks)
 	{
@@ -77,5 +77,15 @@ void	ft_usleep(long time)
 		gettimeofday(&start, NULL);
 		start_in_ms = get_time_in_ms(start);
 		usleep(100);
-	} 
+	}
+}
+
+int	ft_join_thread(t_env *env)
+{
+	int	i;
+
+	i = -1;
+	while (++i <= env->nb_of_ph)
+		pthread_join(env->ph[i].thread, NULL);
+	return (0);
 }
