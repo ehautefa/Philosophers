@@ -1,0 +1,35 @@
+SRCS =  srcs/philo_two.c		\
+		srcs/philo_utils.c		\
+		srcs/init_thread.c		\
+		srcs/init_mutex.c		\
+		srcs/launch_thread.c	\
+		srcs/launch_waiter.c
+
+INCLUDE =	-Iinclude
+
+NAME = philo_two
+
+CC		= gcc
+
+CFLAGS	= -Wall -Wextra -Werror
+
+DEBUG_FLAG = -g -fsanitize=thread
+
+${NAME}:
+			${CC} ${SRCS} ${CFLAGS} -o ${NAME}
+
+debug:
+			${CC} ${SRCS} ${CFLAGS} ${DEBUG_FLAG} -o ${NAME}
+
+all: 		${NAME}
+
+clean:
+			rm -f srcs/*.o
+
+fclean:	
+			rm -f ${NAME}
+			rm -rf philo_two.dSYM
+
+re:			fclean all
+
+.PHONY:		all fclean clean re debug
