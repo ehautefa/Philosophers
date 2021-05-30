@@ -6,30 +6,17 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 14:45:53 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 12:46:49 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/05/30 10:13:59 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_two.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
 int	ft_check_env(t_env *env)
 {
-	if (env->nb_of_ph < 0 || env->time_to_die < 0
+	if (env->nb_of_ph <= 0 || env->time_to_die < 0
 		|| env->time_to_sleep < 0 || env->time_to_eat < 0)
-	{
-		printf("Error,\nNegative envuments.");
 		return (1);
-	}
 	return (0);
 }
 
@@ -66,7 +53,11 @@ int	main(int ac, char **av)
 {
 	t_env		env;
 
-	gettimeofday(&env.start, NULL);
+	if (gettimeofday(&env.start, NULL) != 0)
+	{
+		printf("Error,\ngettimeofday");
+		return (1);
+	}
 	if (ac != 5 && ac != 6)
 	{
 		printf("Error,\nWrong number of envuments.");
