@@ -31,7 +31,7 @@ all: 		${NAME}
 clean:
 			rm -f srcs/*.o
 
-fclean:	
+fclean:		clean
 			rm -f ${NAME}
 			rm -rf philo.dSYM
 
