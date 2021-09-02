@@ -6,11 +6,11 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 17:09:26 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/02 10:08:24 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo_one.h"
+#include "philo.h"
 
 int	ft_atoi(const char *str)
 {

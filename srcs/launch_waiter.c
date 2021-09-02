@@ -6,11 +6,11 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/30 10:13:59 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/02 10:08:24 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo_two.h"
+#include "philo.h"
 
 int	check_time_last_meal(t_env *env, int i)
 {

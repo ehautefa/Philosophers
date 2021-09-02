@@ -6,11 +6,11 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 17:25:51 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/02 10:08:24 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo_one.h"
+#include "philo.h"
 
 int	eating(t_philo *ph)
 {

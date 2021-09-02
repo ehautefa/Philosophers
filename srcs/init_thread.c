@@ -6,11 +6,11 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 17:18:54 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/02 10:08:24 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo_one.h"
+#include "philo.h"
 
 int	check_alive(t_env *env)
 {

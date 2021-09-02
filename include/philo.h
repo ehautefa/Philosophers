@@ -1,5 +1,17 @@
-#ifndef PHILO_TWO_H
-# define PHILO_TWO_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/02 09:49:40 by ehautefa          #+#    #+#             */
+/*   Updated: 2021/09/02 09:50:18 by ehautefa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
@@ -36,7 +48,7 @@ struct s_env
 };
 
 /*
-** PHILO_TWO.C
+** philo.C
 */
 int		ft_check_env(t_env *env);
 int		ft_init_env(int	ac, char **av, t_env *env);
