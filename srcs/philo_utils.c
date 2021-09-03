@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 17:09:26 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/03 21:23:34 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo_one.h"
+#include "philo.h"
 
 int	ft_atoi(const char *str)
 {
@@ -93,6 +93,6 @@ int	ft_join_thread(t_env *env)
 	while (++i <= env->nb_of_ph && retur == NULL)
 		pthread_join(env->ph[i].thread, retur);
 	if (retur != NULL)
-		return (1);
+		return (print_error("JOIN FAILED", -1));
 	return (0);
 }
