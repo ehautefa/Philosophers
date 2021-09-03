@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 17:25:51 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/06/07 08:00:07 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

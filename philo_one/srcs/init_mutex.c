@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mutex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/05/28 17:21:49 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/06/07 10:00:47 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@ int	take_a_fork(t_env *env, int n, int fork)
 		usleep(100);
 	if (fork >= env->nb_forks)
 		fork = 0;
-	if (pthread_mutex_lock(&env->forks[fork]) != 0)
-		return (1);
-	if (gettimeofday(&time, NULL) != 0)
-		return (1);
 	if (check_alive(env) == 0)
-		printf("%-3d MS %d has taken a fork\n",
-			(int)(-get_time_in_ms(env->start)
-				+ get_time_in_ms(time)), n);
+	{
+		if (pthread_mutex_lock(&env->forks[fork]) != 0)
+			return (1);
+		if (gettimeofday(&time, NULL) != 0)
+			return (1);
+		if (check_alive(env) == 0)
+			printf("%-3d MS %d has taken a fork\n",
+				(int)(-get_time_in_ms(env->start)
+					+ get_time_in_ms(time)), n);
+	}
 	return (0);
 }
 
@@ -56,8 +59,6 @@ int	ft_init_forks(t_env *env)
 
 	i = 0;
 	env->nb_forks = env->nb_of_ph;
-	if (env->nb_forks == 1)
-		env->nb_forks = 2;
 	env->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 			* env->nb_forks);
 	if (env->forks == NULL)
