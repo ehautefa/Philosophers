@@ -43,32 +43,11 @@ int	ft_init_env(int	ac, char **av, t_env *env)
 	env->time_to_die = ft_atoi(av[2]);
 	env->time_to_eat = ft_atoi(av[3]);
 	env->time_to_sleep = ft_atoi(av[4]);
+	env->num_of_eat = -1;
 	if (ac == 6)
 		env->num_of_eat = ft_atoi(av[5]);
-	else
-		env->num_of_eat = -1;
 	env->alive = 0;
 	return (0);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	print_error(char *error, int retur)
-{
-	if (error == NULL)
-		return (retur);
-	write(2, "philo :", 7);
-	write(2, error, ft_strlen(error));
-	write(2, "\n", 1);
-	return (retur);
 }
 
 int	main(int ac, char **av)
