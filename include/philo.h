@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+# define LONG_MAX_LENGTH 10
+
 typedef struct s_env	t_env;
 
 typedef struct s_philo
@@ -68,6 +70,7 @@ void	ft_free(t_env *env);
 long	get_time_in_ms(struct timeval time);
 int		ft_usleep(long time);
 int		ft_join_thread(t_env *env);
+int		print_result(long elapsed_time, int philo, char *msg);
 /*
 ** INIT_MUTEX.C
 */

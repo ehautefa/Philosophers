@@ -6,7 +6,7 @@
 /*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/03 20:43:37 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/05 10:49:35 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	eating(t_philo *ph)
 
 	if (gettimeofday(&time, NULL) != 0)
 		return (1);
-	printf("%-3d MS %d is eating\n", (int)(-get_time_in_ms(ph->env->start)
-			+ get_time_in_ms(time)), ph->id + 1);
+	print_result(-get_time_in_ms(ph->env->start)
+					+ get_time_in_ms(time), ph->id + 1, " is eating\n");
 	if (ft_usleep(ph->env->time_to_eat) != 0)
 		return (1);
 	return (0);
@@ -31,8 +31,8 @@ int	sleeping(t_philo *ph)
 
 	if (gettimeofday(&time, NULL) != 0)
 		return (1);
-	printf("%-3d MS %d is sleeping\n", (int)(-get_time_in_ms(ph->env->start)
-			+ get_time_in_ms(time)), ph->id + 1);
+	print_result(-get_time_in_ms(ph->env->start)
+					+ get_time_in_ms(time), ph->id + 1, " is sleeping\n");
 	if (ft_usleep(ph->env->time_to_sleep) != 0)
 		return (1);
 	return (0);
@@ -44,8 +44,8 @@ int	thinking(t_philo *ph)
 
 	if (gettimeofday(&time, NULL) != 0)
 		return (1);
-	printf("%-3d MS %d is thinking\n", (int)(-get_time_in_ms(ph->env->start)
-			+ get_time_in_ms(time)), ph->id + 1);
+	print_result(-get_time_in_ms(ph->env->start)
+					+ get_time_in_ms(time), ph->id + 1, " is thinking\n");
 	return (0);
 }
 

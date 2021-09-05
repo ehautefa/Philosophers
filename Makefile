@@ -1,5 +1,6 @@
 SRCS =  srcs/philo.c		\
 		srcs/philo_utils.c		\
+		srcs/philo_utils_2.c		\
 		srcs/init_thread.c		\
 		srcs/init_mutex.c		\
 		srcs/launch_thread.c	\

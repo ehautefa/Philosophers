@@ -6,7 +6,7 @@
 /*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:01:31 by elisehautef       #+#    #+#             */
-/*   Updated: 2021/09/03 22:32:48 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/05 11:22:07 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,80 +32,67 @@ int	print_error(char *error, int retur)
 	return (retur);
 }
 
-char	*ft_itoa(long num)
+int		ft_itoa(long num, char *retur)
 {
 	int		count;
 	long	tmp;
-	char	*retur;
 	int		i;
 
 	i = 0;
-	count = -1;
+	count = 0;
 	tmp = num;
-	while (tmp != 0 && ++tmp >= 0)
+	if (num < 0)
+		return (print_error("TIME ERROR", -1));
+	if (num == 0)
+	{
+		retur[0] = '0';
+		retur[1] = '\0';
+		return (0);
+	}
+	while (tmp > 0 && ++count >= 0)
 		tmp = tmp / 10;
-	retur = malloc((count + 1) * sizeof(*retur));
-	if (retur == NULL)
-		return (NULL);
 	while (i < count)
 	{
-		retur[count - 1 - i] = num % 10 - '0';
+		retur[count - 1 - i] = num % 10 + '0';
 		num = num / 10;
 		i++;
 	}
 	retur[count] = '\0';
-	return (retur);
+	return (0);
 }
 
-int	ft_print_long(long num)
+int	ft_strcat(char *time, char *philo, char *msg, char *retur)
 {
-	int		count;
-	long	tmp;
-	char	c;
+	int	i;
+	int	j;
 
-	count = -1;
-	tmp = num;
-	while (tmp != 0 && ++count >= 0)
-		tmp = tmp / 10;
-	while (count > 0)
-	{
-		c = (num >> count) - '0';
-		printf("count : %d num << count : %ld\n",count, num << count);
-		write(1, &c, 1);
-		num = num / 10;
-		count--;
-	}
+	i = 0;
+	j = 0;
+	while (time[i])
+		retur[i++] = time[j++];
+	retur[i++] = ' ';
+	retur[i++] = 'M';
+	retur[i++] = 'S';
+	retur[i++] = ' ';
+	j = 0;
+	while (philo[j])
+		retur[i++] = philo[j++];
+	j = 0;
+	while (msg[j])
+		retur[i++] = msg[j++];
+	retur[i] = '\0';
 	return (0);
 }
 
 int	print_result(long elapsed_time, int philo, char *msg)
 {
-	char c;
-	char *str;
+	char	time[LONG_MAX_LENGTH + 1];
+	char	id[LONG_MAX_LENGTH + 1];
+	char	str[40];
 
-	str = ft_itoa(elapsed_time);
-	if (str == NULL)
-		return(print_error("MALLOC ERROR", -1));
+	ft_itoa(elapsed_time, time);
+	ft_itoa((long)philo, id);
+	ft_strcat(time, id, msg, str);
 	write(1, str, ft_strlen(str));
-	free(str);
-	write(1, " MS ", 4);
-	str = ft_itoa((long)philo);
-	if (str == NULL)
-		return(print_error("MALLOC ERROR", -1));
-	write(1, str, ft_strlen(str));
-	free(str);
-	write(1, msg, ft_strlen(msg));
 	return(0);
-}
-
-int	main(int ac, char **av)
-{
-	ac -=1;
-	while (ac > 0)
-	{
-		ft_print_long(atol(av[ac]));
-		ac--;
-		write(1, "\n", 1);
-	}
-	return (0);
 }

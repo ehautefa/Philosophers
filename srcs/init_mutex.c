@@ -6,7 +6,7 @@
 /*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/03 21:17:58 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/05 10:47:44 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ int	take_a_fork(t_env *env, int n, int fork)
 		if (gettimeofday(&time, NULL) != 0)
 			return (1);
 		if (check_alive(env) == 0)
-			printf("%-3d MS %d has taken a fork\n",
-				(int)(-get_time_in_ms(env->start)
-					+ get_time_in_ms(time)), n);
+			print_result(-get_time_in_ms(env->start)
+					+ get_time_in_ms(time), n, " has taken a fork\n");
 	}
 	return (0);
 }

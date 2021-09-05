@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_waiter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/02 10:08:24 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/05 10:50:16 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	check_time_last_meal(t_env *env, int i)
 		env->who_is_dead = i + 1;
 		if (gettimeofday(&time, NULL))
 			return (1);
-		printf("%-3d MS %d died\n", (int)(-get_time_in_ms(env->start)
-				+ get_time_in_ms(time)), env->who_is_dead);
+		print_result(-get_time_in_ms(env->start)
+				+ get_time_in_ms(time), env->who_is_dead, " died\n");
 		return (2);
 	}
 	if (pthread_mutex_unlock(&env->m_meal_time[i]))
