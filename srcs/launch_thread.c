@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   launch_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
+/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/05 10:49:35 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/06 18:12:00 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 int	eating(t_philo *ph)
 {
@@ -55,14 +55,16 @@ int	ft_manage_forks(t_philo *ph)
 	{
 		if (take_a_fork(ph->env, ph->id + 1, ph->id) != 0)
 			return (1);
-		if (take_a_fork(ph->env, ph->id + 1, ph->id + 1) != 0)
+		if (ph->env->nb_of_ph == 1 ||
+			take_a_fork(ph->env, ph->id + 1, ph->id + 1) != 0)
 			return (1);
 	}
 	else
 	{
 		if (take_a_fork(ph->env, ph->id + 1, ph->id + 1) != 0)
 			return (1);
-		if (take_a_fork(ph->env, ph->id + 1, ph->id) != 0)
+		if (ph->env->nb_of_ph == 1 ||
+			take_a_fork(ph->env, ph->id + 1, ph->id) != 0)
 			return (1);
 	}
 	return (0);
@@ -87,7 +89,7 @@ void	*launch_thread(void *arg)
 			|| pthread_mutex_unlock(&ph->env->forks[ph->id])
 			|| pthread_mutex_unlock(&ph->env->forks[(ph->id + 1)
 					% ph->env->nb_forks]))
-			return ("Error");
+			return ("Error");		
 		if (check_alive(ph->env) == 0 && sleeping(ph))
 			return ("Error");
 		if (check_alive(ph->env) == 0 && thinking(ph))

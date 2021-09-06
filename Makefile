@@ -16,7 +16,7 @@ CC		= gcc
 
 CFLAGS	= -Wall -Wextra -Werror -pthread
 
-DEBUG_FLAG = -fsanitize=thread
+DEBUG_FLAG = -g3
 
 .c.o:		${SRCS}
 			${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}

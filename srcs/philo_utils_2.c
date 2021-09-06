@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
+/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:01:31 by elisehautef       #+#    #+#             */
-/*   Updated: 2021/09/05 11:22:07 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/06 13:30:07 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 int	ft_strlen(char *str)
 {

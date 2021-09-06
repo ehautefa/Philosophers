@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
+/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/03 21:27:59 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/06 18:14:23 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 int	ft_atoi(const char *str)
 {
@@ -41,9 +41,11 @@ void	ft_free(t_env *env)
 	while (i < env->nb_forks)
 	{
 		pthread_mutex_destroy(&env->forks[i]);
+		pthread_mutex_destroy(&env->m_meal_time[i]);
 		i++;
 	}
 	pthread_mutex_destroy(&env->m_alive);
+	free(env->m_meal_time);
 	if (env->forks)
 		free(env->forks);
 	env->forks = NULL;

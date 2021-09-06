@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   launch_waiter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
+/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/05 10:50:16 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/06 18:00:59 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 int	check_time_last_meal(t_env *env, int i)
 {

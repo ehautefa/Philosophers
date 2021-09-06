@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_thread.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
+/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/03 21:22:21 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/06 18:03:33 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 int	check_alive(t_env *env)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_mutex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
+/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/05 10:47:44 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/06 18:12:26 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 int	take_a_fork(t_env *env, int n, int fork)
 {
