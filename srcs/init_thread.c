@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/06 18:03:33 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/06 18:17:51 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_init_thread(t_env *env)
 		if (pthread_create(&env->ph[i].thread, NULL, launch_thread,
 				(void *)&env->ph[i]) != 0)
 			return (1);
-		usleep(100);
+		usleep(50);
 	}
 	if (ft_join_thread(env))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/06 18:12:26 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/06 18:17:53 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	take_a_fork(t_env *env, int n, int fork)
 	struct timeval	time;
 
 	if (n != fork)
-		usleep(100);
+		usleep(50);
 	if (fork >= env->nb_forks)
 		fork = 0;
 	if (check_alive(env) == 0)

@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/06 18:14:23 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/06 18:29:16 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	ft_free(t_env *env)
 	i = 0;
 	while (i < env->nb_forks)
 	{
+		free(&env->forks[i]);
 		pthread_mutex_destroy(&env->forks[i]);
+		free(&env->m_meal_time[i]);
 		pthread_mutex_destroy(&env->m_meal_time[i]);
 		i++;
 	}
@@ -74,7 +76,7 @@ int	ft_usleep(long time)
 		if (gettimeofday(&start, NULL))
 			return (1);
 		start_in_ms = get_time_in_ms(start);
-		usleep(100);
+		usleep(50);
 	}
 	return (0);
 }
