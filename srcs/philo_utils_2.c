@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:01:31 by elisehautef       #+#    #+#             */
-/*   Updated: 2021/09/06 13:30:07 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:14:41 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	print_error(char *error, int retur)
 	return (retur);
 }
 
-int		ft_itoa(long num, char *retur)
+int	ft_itoa(long num, char *retur)
 {
 	int		count;
 	long	tmp;
@@ -94,5 +94,5 @@ int	print_result(long elapsed_time, int philo, char *msg)
 	ft_itoa((long)philo, id);
 	ft_strcat(time, id, msg, str);
 	write(1, str, ft_strlen(str));
-	return(0);
+	return (0);
 }

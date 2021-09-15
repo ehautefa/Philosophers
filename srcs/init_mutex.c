@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 16:17:10 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:17:21 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	take_a_fork(t_env *env, int n, int fork)
 			return (print_error("GET TIME OF DAY FAILED", -1));
 		if (check_alive(env) == 0)
 			print_result(-get_time_in_ms(env->start)
-					+ get_time_in_ms(time), n, " has taken a fork\n");
+				+ get_time_in_ms(time), n, " has taken a fork\n");
 	}	
 	return (0);
 }

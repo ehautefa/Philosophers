@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 17:05:39 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:16:52 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_time_last_meal(t_env *env, int i)
 		if (gettimeofday(&time, NULL))
 			return (1);
 		print_result(-get_time_in_ms(env->start)
-				+ get_time_in_ms(time), env->who_is_dead, " died\n");
+			+ get_time_in_ms(time), env->who_is_dead, " died\n");
 		return (2);
 	}
 	if (pthread_mutex_unlock(&env->m_meal_time[i]))

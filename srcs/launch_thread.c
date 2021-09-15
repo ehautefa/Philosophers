@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 17:04:24 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:16:46 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	eating(t_philo *ph)
 	if (gettimeofday(&time, NULL) != 0)
 		return (1);
 	print_result(-get_time_in_ms(ph->env->start)
-					+ get_time_in_ms(time), ph->id + 1, " is eating\n");
-	if (ft_usleep(ph->env->time_to_eat) != 0)
+		+ get_time_in_ms(time), ph->id + 1, " is eating\n");
+	if (ft_usleep(ph->env->time_to_eat, ph->env) != 0)
 		return (1);
 	return (0);
 }
@@ -32,8 +32,8 @@ int	sleeping(t_philo *ph)
 	if (gettimeofday(&time, NULL) != 0)
 		return (1);
 	print_result(-get_time_in_ms(ph->env->start)
-					+ get_time_in_ms(time), ph->id + 1, " is sleeping\n");
-	if (ft_usleep(ph->env->time_to_sleep) != 0)
+		+ get_time_in_ms(time), ph->id + 1, " is sleeping\n");
+	if (ft_usleep(ph->env->time_to_sleep, ph->env) != 0)
 		return (1);
 	return (0);
 }
@@ -45,7 +45,7 @@ int	thinking(t_philo *ph)
 	if (gettimeofday(&time, NULL) != 0)
 		return (1);
 	print_result(-get_time_in_ms(ph->env->start)
-					+ get_time_in_ms(time), ph->id + 1, " is thinking\n");
+		+ get_time_in_ms(time), ph->id + 1, " is thinking\n");
 	return (0);
 }
 
@@ -55,16 +55,16 @@ int	ft_manage_forks(t_philo *ph)
 	{
 		if (take_a_fork(ph->env, ph->id + 1, ph->id) != 0)
 			return (1);
-		if (ph->env->nb_of_ph == 1 ||
-			take_a_fork(ph->env, ph->id + 1, ph->id + 1) != 0)
+		if (ph->env->nb_of_ph == 1
+			|| take_a_fork(ph->env, ph->id + 1, ph->id + 1) != 0)
 			return (1);
 	}
 	else
 	{
 		if (take_a_fork(ph->env, ph->id + 1, ph->id + 1) != 0)
 			return (1);
-		if (ph->env->nb_of_ph == 1 ||
-			take_a_fork(ph->env, ph->id + 1, ph->id) != 0)
+		if (ph->env->nb_of_ph == 1
+			|| take_a_fork(ph->env, ph->id + 1, ph->id) != 0)
 			return (1);
 	}
 	return (0);

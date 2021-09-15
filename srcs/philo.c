@@ -22,7 +22,7 @@ int	ft_check_env(t_env *env)
 	return (0);
 }
 
-int	ft_init_env(int	ac, char **av, t_env *env)
+int	ft_init_env(int ac, char **av, t_env *env)
 {
 	int	i;
 	int	j;

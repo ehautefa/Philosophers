@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 17:04:47 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:17:01 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ int	ft_init_thread(t_env *env)
 	env->ph = (t_philo *)malloc((env->nb_of_ph) * sizeof(t_philo));
 	if (env->ph == NULL || ft_init_meal_time(env))
 		return (1);
-	// if (pthread_create(&env->ph[env->nb_of_ph].thread, NULL,
-	// 		launch_waiter, (void *)env) != 0)
-	// 	return (print_error("PTHREAD CREATE ERROR", -1));
 	while (++i < env->nb_of_ph)
 	{
 		env->ph[i].id = i;

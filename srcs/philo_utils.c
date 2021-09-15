@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 16:56:11 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:10:06 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	ft_free(t_env *env)
 	i = 0;
 	while (i < env->nb_forks)
 	{
-		// free(&env->forks[i]);
 		pthread_mutex_destroy(&env->forks[i]);
-		// free(&env->m_meal_time[i]);
 		pthread_mutex_destroy(&env->m_meal_time[i]);
 		i++;
 	}
@@ -59,7 +57,7 @@ long	get_time_in_ms(struct timeval time)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int	ft_usleep(long time)
+int	ft_usleep(long time, t_env *env)
 {
 	struct timeval	start;
 	long			start_in_ms;
@@ -69,7 +67,7 @@ int	ft_usleep(long time)
 		return (1);
 	start_in_ms = get_time_in_ms(start);
 	final_time = start_in_ms + time;
-	while (start_in_ms < final_time)
+	while (check_alive(env) == 0 && start_in_ms < final_time)
 	{
 		if (gettimeofday(&start, NULL))
 			return (1);
