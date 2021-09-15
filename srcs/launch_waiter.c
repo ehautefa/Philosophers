@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/06 18:00:59 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 16:11:55 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,15 @@ void	*launch_waiter(void *arg)
 	{
 		i = 0;
 		while (i < env->nb_of_ph)
-		{
+		{			
 			ret = check_time_last_meal(env, i);
 			if (ret == 2)
-				return (NULL);
+			{
+				i = -1;
+				write(1, "DETACH\n", 8);
+				while (++i < env->nb_of_ph)
+					pthread_detach(env->ph[i].thread);
+			}
 			else if (ret == 1)
 				return ("Error");
 			usleep(1000);

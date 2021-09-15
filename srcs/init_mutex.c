@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 14:13:22 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/06 18:17:53 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:29:09 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@ int	take_a_fork(t_env *env, int n, int fork)
 
 	if (n != fork)
 		usleep(50);
-	if (fork >= env->nb_forks)
+	if (fork == env->nb_forks)
 		fork = 0;
 	if (check_alive(env) == 0)
 	{
 		if (pthread_mutex_lock(&env->forks[fork]) != 0)
-			return (1);
+			return (print_error("MUTEX LOCK FORK FAILED", -1));
+		printf("%d LOCK :  %d\n", n - 1, fork);
 		if (gettimeofday(&time, NULL) != 0)
-			return (1);
+			return (print_error("GET TIME OF DAY FAILED", -1));
 		if (check_alive(env) == 0)
 			print_result(-get_time_in_ms(env->start)
 					+ get_time_in_ms(time), n, " has taken a fork\n");
-	}
+	}	
 	return (0);
 }
 
