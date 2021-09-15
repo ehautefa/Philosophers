@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 16:04:05 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 16:56:11 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	ft_free(t_env *env)
 	i = 0;
 	while (i < env->nb_forks)
 	{
-		free(&env->forks[i]);
+		// free(&env->forks[i]);
 		pthread_mutex_destroy(&env->forks[i]);
-		free(&env->m_meal_time[i]);
+		// free(&env->m_meal_time[i]);
 		pthread_mutex_destroy(&env->m_meal_time[i]);
 		i++;
 	}
@@ -50,10 +50,8 @@ void	ft_free(t_env *env)
 	free(env->m_meal_time);
 	if (env->forks)
 		free(env->forks);
-	env->forks = NULL;
 	if (env->ph)
 		free(env->ph);
-	env->ph = NULL;
 }
 
 long	get_time_in_ms(struct timeval time)
@@ -88,7 +86,7 @@ int	ft_join_thread(t_env *env)
 
 	i = -1;
 	retur = NULL;
-	while (++i <= env->nb_of_ph && retur == NULL)
+	while (++i < env->nb_of_ph && retur == NULL)
 		pthread_join(env->ph[i].thread, retur);
 	if (retur != NULL)
 		return (print_error("JOIN FAILED", -1));

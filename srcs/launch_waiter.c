@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 16:11:55 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:05:39 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	*launch_waiter(void *arg)
 			if (ret == 2)
 			{
 				i = -1;
-				write(1, "DETACH\n", 8);
 				while (++i < env->nb_of_ph)
 					pthread_detach(env->ph[i].thread);
 			}

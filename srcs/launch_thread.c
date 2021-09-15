@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 15:30:47 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/15 17:04:24 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	*launch_thread(void *arg)
 			|| gettimeofday(&ph->meal_time, NULL)
 			|| pthread_mutex_unlock(&ph->env->m_meal_time[ph->id]))
 			return ("Error");
-		if (check_alive(ph->env) == 0 || eating(ph))
+		if (check_alive(ph->env) == 0 && eating(ph))
 			return ("Error");
 		if (gettimeofday(&time, NULL)
 			|| pthread_mutex_unlock(&ph->env->forks[ph->id])
