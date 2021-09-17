@@ -10,7 +10,7 @@ OBJS = ${SRCS:.c=.o}
 
 INCLUDE =	-Iinclude
 
-NAME = philo
+NAME = philo_one
 
 CC		= gcc
 

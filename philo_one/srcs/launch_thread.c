@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/17 13:30:42 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/17 16:06:34 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	eating(t_philo *ph)
 	print_result(-get_time_in_ms(ph->env->start)
 		+ get_time_in_ms(time), ph->id + 1, " is eating\n");
 	if (ft_usleep(ph->env->time_to_eat, ph->env) != 0)
+		return (1);
+	if (pthread_mutex_lock(&ph->env->m_nb_of_meal[ph->id]))
+		return (1);
+	ph->num_of_eat--;
+	if (pthread_mutex_unlock(&ph->env->m_nb_of_meal[ph->id]))
 		return (1);
 	return (0);
 }
@@ -94,9 +99,6 @@ void	*launch_thread(void *arg)
 			return ("Error");
 		if (check_alive(ph->env) == 0 && thinking(ph))
 			return ("Error");
-		pthread_mutex_lock(&ph->env->m_nb_of_meal[ph->id]);
-		ph->num_of_eat--;
-		pthread_mutex_unlock(&ph->env->m_nb_of_meal[ph->id]);
 	}
 	return (NULL);
 }

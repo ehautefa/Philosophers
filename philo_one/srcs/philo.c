@@ -43,7 +43,7 @@ int	ft_init_env(int ac, char **av, t_env *env)
 	env->time_to_die = ft_atoi(av[2]);
 	env->time_to_eat = ft_atoi(av[3]);
 	env->time_to_sleep = ft_atoi(av[4]);
-	env->num_of_eat = -1;
+	env->num_of_eat = 2147483647;
 	if (ac == 6)
 		env->num_of_eat = ft_atoi(av[5]);
 	env->alive = 0;

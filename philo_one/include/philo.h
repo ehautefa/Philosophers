@@ -89,7 +89,7 @@ void	*launch_thread(void *arg);
 /*
 ** LAUNCH_WAITER.C
 */
-void	*launch_waiter(void *arg);
+void	*launch_waiter(t_env *env);
 int		check_time_last_meal(t_env *env, int i, int *ret);
 
 #endif

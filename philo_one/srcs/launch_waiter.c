@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:15:11 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/17 13:50:35 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/17 18:33:15 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,44 +42,48 @@ int	check_time_last_meal(t_env *env, int i, int *ret)
 	return (0);
 }
 
-int	check_nb_of_meal(t_env *env)
+int	check_nb_of_meal(t_env *env, int *ret)
 {
 	int	i;
 
 	i = 0;
 	while (i < env->nb_of_ph)
 	{
-		i++;
 		if (pthread_mutex_lock(&env->m_nb_of_meal[i]))
 			return (-1);
 		if (env->ph[i].num_of_eat > 0)
 		{
+			// printf("%d eating %d\n", i, env->ph[i].num_of_eat);
 			if (pthread_mutex_unlock(&env->m_nb_of_meal[i]))
 				return (-1);
 			return (0);
 		}
 		if (pthread_mutex_unlock(&env->m_nb_of_meal[i]))
 				return (-1);
+		i++;
 	}
-	if (i == env->nb_of_ph)
-		return (2);
-	return (0);
+	// write(1, "\nSTOP SIMULATION EATING\n\n", 30);
+	if (pthread_mutex_lock(&env->m_alive))
+		return (1);
+	env->alive = 1;
+	if (pthread_mutex_unlock(&env->m_alive))
+		return (1);
+	// write(1, "\nSTOP SIMULATION EATING\n\n", 30);
+	*ret = 2;
+	return (2);
 }
 
-void	*launch_waiter(void *arg)
+void	*launch_waiter(t_env *env)
 {
-	t_env			*env;
-	int				i;
-	int				ret;
+	int	i;
+	int	ret;
 
-	env = (t_env *)arg;
 	ret = 0;
 	while (check_alive(env) == 0)
 	{
 		i = 0;
-		ret = check_nb_of_meal(env);
-		if (ret == -1)
-			return ("Error");
+		if (check_nb_of_meal(env, &ret) == -1)
+				return ("Error");
 		while (i < env->nb_of_ph)
 		{			
 			ret = check_time_last_meal(env, i, &ret);
@@ -91,7 +95,7 @@ void	*launch_waiter(void *arg)
 			}
 			else if (ret == 1)
 				return ("Error");
-			usleep(1000);
+			usleep(500);
 			i++;
 		}
 	}
