@@ -14,7 +14,9 @@ NAME = philo
 
 CC		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror -pthread
+CFLAGS	= -Wall -Wextra -Werror -pthread 
+
+SANI_FLAG = -fsanitize=thread -g
 
 DEBUG_FLAG = -g3
 
@@ -27,6 +29,9 @@ ${NAME}:	${OBJS}
 debug:		${OBJS}
 			${CC} ${OBJS} ${CFLAGS} ${DEBUG_FLAG} ${INCLUDE} -o ${NAME}
 
+sani:		${OBJS}
+			${CC} ${OBJS} ${CFLAGS} ${SANI_FLAG} ${INCLUDE} -o ${NAME}
+
 all: 		${NAME}
 
 clean:
@@ -38,4 +43,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all fclean clean re debug
+.PHONY:		all fclean clean re debug sani

@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 11:14:17 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 17:16:46 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/17 13:30:42 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	*launch_thread(void *arg)
 	struct timeval	time;	
 
 	ph = (t_philo *)arg;
-	while (ph->num_of_eat != 0 && check_alive(ph->env) == 0)
+	while (check_alive(ph->env) == 0)
 	{
 		if (ft_manage_forks(ph)
 			|| pthread_mutex_lock(&ph->env->m_meal_time[ph->id])
@@ -88,13 +88,15 @@ void	*launch_thread(void *arg)
 		if (gettimeofday(&time, NULL)
 			|| pthread_mutex_unlock(&ph->env->forks[ph->id])
 			|| pthread_mutex_unlock(&ph->env->forks[(ph->id + 1)
-					% ph->env->nb_forks]))
+					% ph->env->nb_of_ph]))
 			return ("Error");
 		if (check_alive(ph->env) == 0 && sleeping(ph))
 			return ("Error");
 		if (check_alive(ph->env) == 0 && thinking(ph))
 			return ("Error");
+		pthread_mutex_lock(&ph->env->m_nb_of_meal[ph->id]);
 		ph->num_of_eat--;
+		pthread_mutex_unlock(&ph->env->m_nb_of_meal[ph->id]);
 	}
 	return (NULL);
 }

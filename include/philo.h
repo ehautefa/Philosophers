@@ -40,12 +40,12 @@ struct s_env
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_eat;
-	int				nb_forks;
 	int				alive;
 	int				who_is_dead;
 	pthread_mutex_t	*m_meal_time;
 	pthread_mutex_t	m_alive;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	*m_nb_of_meal;
 	t_philo			*ph;
 };
 
@@ -90,6 +90,6 @@ void	*launch_thread(void *arg);
 ** LAUNCH_WAITER.C
 */
 void	*launch_waiter(void *arg);
-int		check_time_last_meal(t_env *env, int i);
+int		check_time_last_meal(t_env *env, int i, int *ret);
 
 #endif

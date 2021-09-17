@@ -6,7 +6,7 @@
 /*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/15 17:10:06 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/17 13:49:19 by ehautefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	ft_free(t_env *env)
 	int		i;
 
 	i = 0;
-	while (i < env->nb_forks)
+	while (i < env->nb_of_ph)
 	{
 		pthread_mutex_destroy(&env->forks[i]);
+		pthread_mutex_destroy(&env->m_nb_of_meal[i]);
 		pthread_mutex_destroy(&env->m_meal_time[i]);
 		i++;
 	}
@@ -48,6 +49,8 @@ void	ft_free(t_env *env)
 	free(env->m_meal_time);
 	if (env->forks)
 		free(env->forks);
+	if (env->m_nb_of_meal)
+		free(env->m_nb_of_meal);
 	if (env->ph)
 		free(env->ph);
 }
