@@ -59,7 +59,7 @@ int	ft_init_thread(t_env *env)
 				(void *)&env->ph[i]) != 0)
 			return (1);
 	}
-	if (launch_waiter(env) || ft_join_thread(env))
+	if (launch_waiter(env))// || ft_join_thread(env))
 		return (1);
 	return (0);
 }
