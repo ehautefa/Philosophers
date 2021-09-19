@@ -17,7 +17,7 @@ int	ft_check_env(t_env *env)
 	if (env->nb_of_ph < 0 || env->time_to_die < 0
 		|| env->time_to_sleep < 0 || env->time_to_eat < 0)
 		return (print_error("INVALID ARGUMENTS", -1));
-	if (env->nb_of_ph == 0)
+	if (env->nb_of_ph == 0 || env->num_of_eat == 0)
 		return (print_error(NULL, -1));
 	return (0);
 }

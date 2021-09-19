@@ -1,6 +1,6 @@
-SRCS =  srcs/philo.c		\
+SRCS =  srcs/philo.c			\
 		srcs/philo_utils.c		\
-		srcs/philo_utils_2.c		\
+		srcs/philo_utils_2.c	\
 		srcs/init_thread.c		\
 		srcs/init_mutex.c		\
 		srcs/launch_thread.c	\
@@ -14,7 +14,7 @@ NAME = philo_one
 
 CC		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror -pthread 
+CFLAGS	= -Wall -Wextra -Werror -pthread
 
 SANI_FLAG = -fsanitize=thread -g
 

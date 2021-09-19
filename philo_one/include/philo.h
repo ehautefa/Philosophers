@@ -54,7 +54,7 @@ struct s_env
 */
 int		ft_check_env(t_env *env);
 int		print_error(char *error, int retur);
-int		ft_init_env(int	ac, char **av, t_env *env);
+int		ft_init_env(int ac, char **av, t_env *env);
 
 /*
 ** INIT_THREAD.C
