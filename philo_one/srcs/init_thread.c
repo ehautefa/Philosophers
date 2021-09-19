@@ -6,7 +6,7 @@
 /*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 16:09:40 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/19 12:21:21 by elisehautef      ###   ########.fr       */
+/*   Updated: 2021/09/19 12:44:23 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_init_thread(t_env *env)
 				(void *)&env->ph[i]) != 0)
 			return (1);
 	}
-	if (launch_waiter(env) || ft_join_thread(env))
+	if (launch_waiter(env))
 		return (1);
 	return (0);
 }

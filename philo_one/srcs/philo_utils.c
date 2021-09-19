@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehautefa <ehautefa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elisehautefaye <elisehautefaye@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:00:41 by ehautefa          #+#    #+#             */
-/*   Updated: 2021/09/17 13:49:19 by ehautefa         ###   ########.fr       */
+/*   Updated: 2021/09/19 12:44:39 by elisehautef      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,5 @@ int	ft_usleep(long time, t_env *env)
 		start_in_ms = get_time_in_ms(start);
 		usleep(50);
 	}
-	return (0);
-}
-
-int	ft_join_thread(t_env *env)
-{
-	int		i;
-	void	*retur;
-
-	i = -1;
-	retur = NULL;
-	while (++i < env->nb_of_ph && retur == NULL)
-		pthread_join(env->ph[i].thread, retur);
-	if (retur != NULL)
-		return (print_error("JOIN FAILED", -1));
 	return (0);
 }
